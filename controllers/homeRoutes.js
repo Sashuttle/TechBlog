@@ -1,7 +1,9 @@
+//Import required modules
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comments } = require('../models');
 
+//route to get all posts for the homepage
 router.get('/', (req, res) => {
     Post.findAll({
         attributes: [
@@ -41,6 +43,7 @@ router.get('/', (req, res) => {
     });
 });
 
+//route to get post by a single id
 router.get('/post/:id', (req, res) => {
     Post.findOne({
         where: {
@@ -91,6 +94,7 @@ router.get('/post/:id', (req, res) => {
     });
 });
 
+//route to render signup page
 router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
@@ -100,6 +104,7 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+//route to render login page
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
@@ -114,4 +119,5 @@ router.get('/login', (req, res) => {
     //Do redirect to '/' ?
 }) */
 
+    //export to use throughout application
 module.exports = router;
