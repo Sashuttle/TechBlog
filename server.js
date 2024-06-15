@@ -1,16 +1,26 @@
-//Setting up dependencies and configurations
+//Note: Setting up dependencies and configurations
 const express = require('express');
 const path = require('path');
 const routes = require('./controllers');
-const exphbs = require('express-handlebars');
-//FixMe: Do not need a database for this challenge?
-//const sequelize = require('./config/connection');
 const session = require('express-session');
+const exphbs = require('express-handlebars');
+const helpers = require('./utils/helpers');
+const sequelize = require('./config/connection');
+const exp = require('constants');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+//Note: loading environment variables from .env
 require('dotenv').config();
 
-//Setting up the session
+//Note: Setting up an instance of express application & using default port 3001
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+//Note: setting up handlebars with custom helpers
+const hbs = exphbs.create({ helpers });
+
+//Note: Setting up the session
+//FixMe: May have to fix this code?
 const sessions = {
     secret: 'big secret',
     cookies: {},
@@ -18,31 +28,28 @@ const sessions = {
     saveUninitialized: true,
     store: new SequelizeStore({
         db: sequilize,
-    })
+    }),
 };
 
-//Setting up an instance of express application & using default port
-const app = express();
-const PORT = process.env.PORT || 3000;
+//Note: setting up & use express session middleware
+app.use(session(sessions));
 
-//setting up static file server middleware with express
-app.use(express.static(path.join(_dirname, 'public')));
-
-//Setting up handlebar template & default view engine 
+//Note: Setting up handlebar template & default view engine 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-//parse incoming requests with JSON & URL encoded payloads
+
+//Note: MIDDLEWARE
+//Note: parse incoming requests with JSON & URL encoded payloads
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-//setting up & use express session middleware
-app.use(session(sessions));
-
-//uses routes from route modules
+//Note: setting up static file server middleware with express
+app.use(express.static(path.join(_dirname, 'public')));
+//Note: uses routes from route modules
 app.use(routes);
 
-//sync sequelize models with database (no dropping and recreating) & start express server on default port
-Sequelize.sync({ force: false }).then (() => {
-    app.listen(process.env.PORT || 3000, () => console.log('Ready to receive'));
+//Note: sync sequelize models with database (no dropping and recreating) & start express server on default port
+//FIXME: may have to come back to this code and change it
+sequelize.sync({ force: false }).then (() => {
+    app.listen(process.env.PORT || 3001, () => console.log('Ready to receive'));
 });

@@ -1,9 +1,9 @@
-//Import required modules
+//Note: Import required modules
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Post, User, Comments } = require('../models');
+const { Post, User, Comment } = require('../models');
+const withAuth = require('../utils/auth');
 
-//route to get all posts for the homepage
+//Note: route to get all posts for the homepage
 router.get('/', (req, res) => {
     Post.findAll({
         attributes: [
@@ -27,6 +27,7 @@ router.get('/', (req, res) => {
             }
         ]
     })
+
     .then(dbPostData => {
         const posts = dbPostData.map(post => post.get ({
             plain: true
@@ -37,14 +38,16 @@ router.get('/', (req, res) => {
             loggedIn: req.session.loggedIn
         });
     })
+
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
 });
 
-//route to get post by a single id
-router.get('/post/:id', (req, res) => {
+
+//Note:route to get post by a single id
+router.get('/post/:id', withAuth, (req, res) => {
     Post.findOne({
         where: {
             id: req.params.id
@@ -94,7 +97,7 @@ router.get('/post/:id', (req, res) => {
     });
 });
 
-//route to render signup page
+//Note: route to render signup page
 router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');
@@ -104,7 +107,7 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-//route to render login page
+//Note: route to render login page
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/');

@@ -1,9 +1,10 @@
-//importing sequilize
+//Note: importing sequilize
 const Sequelize = require('sequelize');
-//env variables
+
+//Note: env variables
 require('dotenv').config();
 
-//Declaring variable to hold sequilize instance, checking if application is deployed, if JAWSDB_URL is present intialize sequelize, otherwise initialize with mysql
+//Note: Declaring variable to hold sequilize instance, checking if application is deployed, if JAWSDB_URL is present intialize sequelize, otherwise initialize with mysql
 let sequilize;
 
 if (process.env.JAWSDB_URL) {
