@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Halo: Master Chief Collection",
+        "description": "Master Chief is the goat",
+        "date_created": "February 25, 2024",
+        "user_id": 2
+    },
+    
+    {
+        "title": "Wrath of the Lich King is the best expac",
+        "description": "Arthus is best boss",
+        "date_created": "April 25, 2024",
+        "user_id": 1
+    },
+
+    {
+        "title": "Curly fries or Crinkle Cut?",
+        "description": "Curly fries are so delicious and curly",
+        "date_created": "July 4, 2024",
+        "user_id": 3
+    }
+]

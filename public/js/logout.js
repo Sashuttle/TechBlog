@@ -1,4 +1,4 @@
-//handles user logout process
+//Note: handles user logout process
 async function logout () {
     //post request to logout endpoint to terminate user session
     const response = await fetch('/api/users/logout', {
@@ -14,5 +14,5 @@ async function logout () {
     }
 }
 
-//attach event listener to loguot button (when clicked logout function is called)
+//Note: attach event listener to loguot button (when clicked logout function is called)
 document.querySelector('#logout').addEventListener('click', logout);

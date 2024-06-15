@@ -1,9 +1,9 @@
-//Import required modules
+//Note: Import required modules
 const router = require('express').Router();
 const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-//route to all comments
+//Note: route to all comments
 router.get('/', (req, res) => {
     Comment.findAll()
     .then(dbCommentsData => res.json(dbCommentsData))
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     });
 });
 
-//route to create a new comment (protected route)
+//Note: route to create a new comment (protected route)
 router.post('/', withAuth, (req, res) => {
     if (req.session) {
         Comment.create({
@@ -29,7 +29,7 @@ router.post('/', withAuth, (req, res) => {
     }
 });
 
-//route to delete a comment by ID (protected route)
+//Note: route to delete a comment by ID (protected route)
 router.delete('/:id', withAuth, (req, res) => {
     Comment.destroy({
         where: {
@@ -49,5 +49,5 @@ router.delete('/:id', withAuth, (req, res) => {
     });
 });
 
-//export router to use throughout application
+//Note: export router to use throughout application
 module.exports = router;

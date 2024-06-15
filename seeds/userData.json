@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Andy G",
+        "email": "bigbro@email.com",
+        "password": "password123"
+    },
+
+    {
+        "name": "Sam S",
+        "email": "nerdyG@email.com",
+        "password": "password456"
+    },
+    
+    {
+        "name": "Jacob A",
+        "email": "weirdo91@email.com",
+        "password": "password789"
+    }
+]

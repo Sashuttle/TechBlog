@@ -1,12 +1,11 @@
-//importing required modules and packages
+//Note: importing required modules and packages
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-//const { underscoredIf } = require('sequelize/lib/utils');
 
-//define the post model by extending sequilizes model class
+//Note: define the post model by extending sequilizes model class
 class Post extends Model {}
 
-//initialize the post model with its attributes and configuration
+//Note: initialize the post model with its attributes and configuration
 Post.init(
     {
         id: {
@@ -35,7 +34,7 @@ Post.init(
         }
     }, {
 
-    //sequelize configuration options
+    //Note: sequelize configuration options
     sequelize,
     freezeTableName: true,
     underscored: true,
@@ -43,5 +42,5 @@ Post.init(
     }
 )
 
-//exporting post model for other parts of application
+//Note: exporting post model for other parts of application
 module.exports = Post;

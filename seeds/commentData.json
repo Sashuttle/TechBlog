@@ -1,0 +1,22 @@
+[
+    {
+        "comment_body": "Halo is the best game ever",
+        "date_created": "February 25, 2024",
+        "user_id": 2,
+        "post_id": 1
+    },
+    
+    {
+        "comment_body": "Horde is the best and Alliance stinks",
+        "date_created": "June 25, 2024",
+        "user_id": 3,
+        "post_id": 2
+    },
+
+    {
+        "comment_body": "Potatoes are the best",
+        "date_created": "March 25, 2024",
+        "user_id": 1,
+        "post_id": 3
+    }
+]

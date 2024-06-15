@@ -1,11 +1,11 @@
-//importing required modules and packages
+//Note: importing required modules and packages
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// define the comment model with its attributes and configuration
+//Note: define the comment model with its attributes and configuration
 class Comment extends Model {}
 
-//Initializing the comment model with its configurations and attributes
+//Note: Initializing the comment model with its configurations and attributes
 Comment.init(
     {
         id: {
@@ -37,7 +37,7 @@ Comment.init(
         }
     }, {
 
-    //sequelize the configuration options
+    //Note: sequelize the configuration options
         sequelize,
         freezeTableName: true,
         underscored: true,
@@ -45,5 +45,5 @@ Comment.init(
     }
 );
 
-//export comment model to be used throughout application
+//Note: export comment model to be used throughout application
 module.exports = Comment;
