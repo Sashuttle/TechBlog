@@ -1,8 +1,8 @@
-//import required modules
+//Note: import required modules
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 
-//get all users but do not include passwords
+//Note: get all users but do not include passwords
 router.get('/', (req, res) => {
     User.findAll({
         attributes: {
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     });
 });
 
-//get a single user by id but do not include passwords
+//Note: get a single user by id but do not include passwords
 router.get('/:id', (req, res) => {
     User.findOne({
         attributes: {
@@ -52,7 +52,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//post route for user login
+//Note: post route for user login
 router.post('/login', (req, res) => {
     User.findOne({
         where: {
@@ -79,7 +79,7 @@ router.post('/login', (req, res) => {
     });
 });
 
-//post route for user logout
+//Note: post route for user logout
 router.post('/logout', withAuth, (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -90,7 +90,7 @@ router.post('/logout', withAuth, (req, res) => {
     }
 });
 
-//route to update a users information and its protected by middleware
+//Note: route to update a users information and its protected by middleware
 router.put('/:id', withAuth, (req, res) => {
     User.update(req.body, {
         individualHooks: true,
@@ -111,5 +111,5 @@ router.put('/:id', withAuth, (req, res) => {
     });
 });
 
-//export router to be used throughout application
+//Note: export router to be used throughout application
 module.exports = router;

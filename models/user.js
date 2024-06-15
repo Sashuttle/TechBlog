@@ -1,16 +1,16 @@
-//import modules and packages
+//Note: import modules and packages
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 
-//defining the user model by extending sequelize model class
+//Note: defining the user model by extending sequelize model class
 class User extends Model {
     checkPassword(loginPw) {
         return bcrypt.compareSync(loginPw, this.password);
     }
 };
 
-//initialize the user model with its attributes and configurations
+//Note: initialize the user model with its attributes and configurations
 User.init(
     {
         id: {
@@ -36,7 +36,7 @@ User.init(
             }
         }
     }, {
-        //defining model hooks (has pw before creating new user & has pw before updating a user)
+        //Note: defining model hooks (has pw before creating new user & has pw before updating a user)
         hooks: {
             async beforeCreate(newUserData) {
                 newUserData.password = await bcrypt.hash(newUserData.password, 10);
@@ -47,7 +47,7 @@ User.init(
                 return updatedUserData;
             }
         },
-        //sequelize the configuration options
+        //Note:sequelize the configuration options
         sequelize,
         timestamps:false,
         freezeTableName: true,
@@ -56,5 +56,5 @@ User.init(
     }
 );
 
-//export user model to use throughout the application
+//Note: export user model to use throughout the application
 module.exports = User;

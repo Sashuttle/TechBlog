@@ -1,10 +1,10 @@
-// Import required modules
+//Note: Import required modules
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 //const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
-//route to get all posts
+//Note: route to get all posts
 router.get('/', (req, res) => {
     Post.findAll({
         attributes: [
@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
     });
 });
 
-//route to get a single post by id
+//Note: route to get a single post by id
 router.get('/:id', (req, res) => {
     Post.findOne({
         where: {
@@ -76,7 +76,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//route to update a post by id(protected route)
+//Note: route to update a post by id(protected route)
 router.put('/:id', withAuth, (req, res) => {
     Post.update(req.body,
         {
@@ -98,7 +98,7 @@ router.put('/:id', withAuth, (req, res) => {
     });
 });
 
-// route to delete a post by id (protected route)
+//Note: route to delete a post by id (protected route)
 router.delete('/:id', withAuth, (req, res) => {
     Post.destroy({
         where: {
@@ -118,5 +118,5 @@ router.delete('/:id', withAuth, (req, res) => {
     });
 });
 
-//export router to use throughout application
+//Note: export router to use throughout application
 module.exports = router;

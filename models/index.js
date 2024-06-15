@@ -1,9 +1,9 @@
-//Importing the models
+//Note: Importing the models
 const User = require('./user');
 const Comment = require('./comments');
 const Post = require('./post');
 
-//Defining Associations
+//Note: Defining Associations
 //Added on delete and hook functionality to improve code
 User.hasMany(Post, {
     foreignKey: 'user_id'
@@ -37,5 +37,5 @@ Post.hasMany(Comment, {
     hooks: true
 });
 
-//exporting the models
+//Note: exporting the models
 module.exports = { User, Post, Comment };

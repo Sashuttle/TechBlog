@@ -1,7 +1,14 @@
-//function to format the date into MM/DD/YYYY format
-function formatDate(date) {
-    return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`;
-}
+//Note: function to format the date into MM/DD/YYYY format
+module.exports = { 
+    format_date: (date) => {
+        return date.toLocalDateString();
+    },
 
-//export to use formatdate function throughout application
-module.exports = { formatDate };
+    format_amount: (amount) => {
+        return parseInt(amount).toLocaleString();
+    },
+
+    is_my_page: (pageUser, userId) => {
+        return pageUser === userId;
+    },
+};
